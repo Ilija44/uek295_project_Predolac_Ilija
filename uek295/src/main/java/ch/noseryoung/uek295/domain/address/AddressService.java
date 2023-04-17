@@ -11,8 +11,7 @@ public class AddressService {
     @Autowired
     private AddressRepository repository;
 
-
-    public Address createAddress(Address address){
+    public Address addAddress(Address address){
         return  repository.save(address);
     }
     public Address getAddressById(int index) {

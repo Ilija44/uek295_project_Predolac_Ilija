@@ -25,8 +25,8 @@ public class AddressController {
     }
 
     @PostMapping("/")
-    public void createAddress(@Valid @RequestBody Address address){
-        service.createAddress(address);
+    public void postAddress(@Valid @RequestBody Address address) {
+        service.addAddress(address);
     }
 
 

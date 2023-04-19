@@ -32,11 +32,10 @@ public class AddressController {
     @GetMapping("/{addressId}")
     @PreAuthorize("hasAuthority('READ')")
     @Operation(summary = "Retrieves an address from the database with a given ID", description = "Retrieves an existing address from the database with the given address ID. Returns a 200 status code with the address object if the ID is found in the database, or a 404 status code if the ID is not found. Access to this endpoint requires the 'READ' authority.")
-    public ResponseEntity<Address> getAddressById(@PathVariable("addressID") Integer addressId) throws AddressNotFoundException {
-        log.info("Endpoint to retrieve the address with the ID {} was called up", addressId);
+    public ResponseEntity<Address> getAddressById(@PathVariable("addressId") Integer addressId) throws AddressNotFoundException {
+        log.info("\n\nGetting rank with ID: " + addressId + " from the database\n");
         return ResponseEntity.ok().body(service.getAddressById(addressId));
     }
-
     @PostMapping("/")
     @PreAuthorize("hasAuthority('CREATE')")
     @Operation(summary = "Adds a new address to the database", description = "Adds a new address to the database. Access to this endpoint requires the 'CREATE' authority.")

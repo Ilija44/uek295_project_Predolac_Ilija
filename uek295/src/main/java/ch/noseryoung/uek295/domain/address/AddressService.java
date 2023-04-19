@@ -20,5 +20,13 @@ public class AddressService {
     public List<Address> getAddress() {
         return repository.findAll();
     }
+    public void updateAddress(int index, Address address){
+        repository.save(address);
+    }
+    public void deleteAddressById(int index) {
+        repository.deleteById(index);
+    }
+
 
 }
+

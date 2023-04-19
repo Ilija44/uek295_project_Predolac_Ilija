@@ -3,6 +3,7 @@ package ch.noseryoung.uek295.domain.role;
 import ch.noseryoung.uek295.domain.authority.Authority;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Fetch;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -20,7 +21,7 @@ public class Role {
     @Column(name = "role_name")
     private String roleName;
 
-    @ManyToMany()
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "role_authority",
             joinColumns = @JoinColumn(name = "id_role", referencedColumnName = "role_id"),

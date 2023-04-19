@@ -22,7 +22,7 @@ public class AddressController {
 
     @GetMapping("/")
     @PreAuthorize("hasAuthority('READ')")
-    @Operation(summary = "Get all addresses", description = "Retrieves a list of all addresses currently stored in the database.")
+    @Operation(summary = "Retrieves a list of all addresses from the database", description = "Retrieves a list of all addresses currently stored in the database. Returns a 200 status code with a list of addresses if the query is successful. Access to this endpoint requires the 'READ' authority.")
     public ResponseEntity<Object> getAddress() {
         log.info("Endpoint for getting all Addresses was called.");
         return ResponseEntity.ok().body(service.getAddress());
@@ -30,18 +30,21 @@ public class AddressController {
 
     @GetMapping("/{addressId}")
     @PreAuthorize("hasAuthority('READ')")
+    @Operation(summary = "Retrieves an address from the database with a given ID", description = "Retrieves an existing address from the database with the given address ID. Returns a 200 status code with the address object if the ID is found in the database, or a 404 status code if the ID is not found. Access to this endpoint requires the 'READ' authority.")
     public ResponseEntity<Address> getAddressById(@PathVariable("addressID") Integer addressId) {
         return ResponseEntity.ok().body(service.getAddressById(addressId));
     }
 
     @PostMapping("/")
     @PreAuthorize("hasAuthority('CREATE')")
+    @Operation(summary = "Adds a new address to the database", description = "Adds a new address to the database. Access to this endpoint requires the 'CREATE' authority.")
     public void postAddress(@Valid @RequestBody Address address) {
         service.addAddress(address);
     }
 
     @DeleteMapping("/{addressId}")
     @PreAuthorize("hasAuthority('DELETE')")
+    @Operation(summary = "Deletes an address from the database with a given ID", description = "Deletes an existing address from the database with the given address ID. Returns a 204 status code if the address was successfully deleted, or a 404 status code if the ID is not found in the database. Access to this endpoint requires the 'ADMIN' role.")
     public ResponseEntity<Object> deleteAddress(@PathVariable("addressId") Integer addressId) {
         service.deleteAddressById(addressId);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();

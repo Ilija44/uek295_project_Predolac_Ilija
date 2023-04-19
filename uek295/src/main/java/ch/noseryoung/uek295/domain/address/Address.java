@@ -1,8 +1,6 @@
 package ch.noseryoung.uek295.domain.address;
 
-
 import lombok.*;
-
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -13,7 +11,6 @@ import javax.validation.constraints.NotBlank;
 
 @Table(name = "address")
 public class Address {
-
 
     @Id
     @Column(name = "address_id")

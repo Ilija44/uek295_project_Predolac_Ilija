@@ -3,7 +3,6 @@ package ch.noseryoung.uek295.domain.address;
 import ch.noseryoung.uek295.domain.exception.AddressNotFoundException;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.extern.log4j.Log4j2;
-import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +18,7 @@ public class AddressController {
 
     @Autowired
 
-  AddressService service;
+    AddressService service;
 
     @GetMapping("/")
     @PreAuthorize("hasAuthority('READ')")
@@ -36,6 +35,7 @@ public class AddressController {
         log.info("\n\nGetting rank with ID: " + addressId + " from the database\n");
         return ResponseEntity.ok().body(service.getAddressById(addressId));
     }
+
     @PostMapping("/")
     @PreAuthorize("hasAuthority('CREATE')")
     @Operation(summary = "Adds a new address to the database", description = "Adds a new address to the database. Access to this endpoint requires the 'CREATE' authority.")
